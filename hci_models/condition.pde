@@ -1,4 +1,4 @@
-class Condition{
+class Condition {
 
     String name;
     int numTrials;
@@ -23,7 +23,6 @@ class Condition{
       int c = int(random(this.menuSize));
       this.trials.add(new Trial(menuContents[c]));
     }
-    println(menuContents);
   }
   
 }
