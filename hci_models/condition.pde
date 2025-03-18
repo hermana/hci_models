@@ -25,4 +25,11 @@ class Condition {
     }
   }
   
+  void doTrials(){
+    for(Trial t: this.trials){
+      // use the model to get the estimated time for each trial
+      t.predictedTime = this.menu.get_model_estimate(t.target); //the estimate in seconds
+    }
+  }
+  
 }

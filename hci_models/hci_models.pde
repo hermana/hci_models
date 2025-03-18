@@ -34,8 +34,7 @@ void draw() {
     state = State.TRIAL;
     break;
    case TRIAL:
-     // TODO
-     println("TODO: trial");
+     currentCondition.doTrials();
      state = State.END_CONDITION;
      break;
    case END_CONDITION:
