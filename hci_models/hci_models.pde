@@ -1,6 +1,10 @@
+Condition currentCondition;
 
 
 void setup() {
+  
+  currentCondition = new Condition("Starting Condition", 250, 10, 3);
+  
   PFont myFont = createFont("Arial", 32, true); 
   textFont(myFont);
   textAlign(CENTER);  
