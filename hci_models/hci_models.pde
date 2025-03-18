@@ -3,7 +3,8 @@ Condition currentCondition;
 
 void setup() {
   
-  currentCondition = new Condition("Starting Condition", 250, 10, 3);
+  // FIXME: fractional amounts for height + it's not actually 250 trials, see instructions
+  currentCondition = new Condition("Starting Condition", 5, 10, 3);
   
   PFont myFont = createFont("Arial", 32, true); 
   textFont(myFont);

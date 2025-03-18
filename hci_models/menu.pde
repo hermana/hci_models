@@ -21,7 +21,10 @@ class Menu{
        this.menuContentList[i] = menuChar;
        menuChar++;
      }
-   
+  }
+
+  char[] getMenuContentList(){
+    return this.menuContentList;
   }
 
 }
