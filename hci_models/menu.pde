@@ -12,6 +12,7 @@ class Menu{
     this.cacheSize = cache_size;
     this.menuContentList = new char[this.numItems];
     this.items = new ArrayList<Item>();
+    this.cache = new ArrayList<Item>();
     this.model = new Model();
     this.generateMenuItems();
   }
@@ -29,13 +30,66 @@ class Menu{
     return this.menuContentList;
   }
 
+  void add_to_cache(Item i){
+    i.item_height = INITIAL_ITEM_HEIGHT;
+    if(this.cache.size() >= this.cacheSize){
+      this.cache.remove(this.cacheSize-1);
+    }
+    this.cache.add(0, i);
+  }
+
+  boolean inCache(char t){
+    if(this.cache.size()>0){
+      for(Item i: this.cache){
+        if(i.content == t){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+
+  float getDistanceFromTopOfCache(char t){
+    float distance = 0;
+    if(this.cache.size()>0){
+      for(Item i: this.cache){
+        if(i.content == t){
+          return distance;
+        }
+        distance += i.item_height;
+      }
+    }
+    return distance;
+  }
+
+  float getDistanceFromTopOfMenu(char t){
+    float distance = 0;
+    for(Item i: this.items){
+      if(i.content == t){
+        return distance;
+      }
+      distance += i.item_height;
+    }
+    return distance;
+  }
+
   int get_model_estimate(char t){
-    float expertise = 1.0; //FIXME: get expertise
-    int distanceFromTopOfCache = 1; //TODO
-    int distanceFromTopOfMenu = 1;
-    float targetHeight = 1.0; // Get the Item height of Item T
-    // int num_menu_items, int distance_from_top_of_menu, float target_height
-    return this.model.get_estimate(expertise, this.cacheSize, distanceFromTopOfCache, numItems, distanceFromTopOfMenu, targetHeight);
+    for(Item i: this.items){
+      if(i.content == t){
+        boolean isInCache = this.inCache(t); 
+        // If this item is not in the cache, this will be the height of the cache
+        float distanceFromTopOfCache = this.getDistanceFromTopOfCache(t);
+        float distanceFromTopOfMenu = this.getDistanceFromTopOfMenu(t);
+        int estimate = this.model.get_estimate(isInCache, i.get_expertise(), this.cacheSize, distanceFromTopOfCache, numItems, distanceFromTopOfMenu, i.item_height);   
+        if(!isInCache){
+          i.add_expertise();
+        }
+        this.add_to_cache(i);
+        return estimate;        
+      }
+    }
+      return -1; //Item not found
   }
 
 }
