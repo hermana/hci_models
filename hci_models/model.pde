@@ -40,11 +40,11 @@ class Model{
     return ((1-expertise)*this._time_menu_visual_search(num_menu_items)) + (expertise*this._time_retrieval(num_menu_items)) + this._time_menu_pointing(distance_from_top_of_cache, distance_from_top_of_menu, target_height);
   }
   
-  int get_estimate(boolean isInCache, float expertise, int cache_size, float distance_from_top_of_cache, int num_menu_items, float distance_from_top_of_menu, float target_height){
+  float get_estimate(boolean isInCache, float expertise, int cache_size, float distance_from_top_of_cache, int num_menu_items, float distance_from_top_of_menu, float target_height){
     if(isInCache){
-      return int(this._time_for_cache(cache_size, distance_from_top_of_cache));
+      return this._time_for_cache(cache_size, distance_from_top_of_cache);
     }else{
-    return int(this._time_for_cache(cache_size, distance_from_top_of_cache) + this._time_for_menu(expertise, num_menu_items, distance_from_top_of_menu, distance_from_top_of_cache, target_height));
+      return this._time_for_cache(cache_size, distance_from_top_of_cache) + this._time_for_menu(expertise, num_menu_items, distance_from_top_of_menu, distance_from_top_of_cache, target_height);
     }  
   }
 

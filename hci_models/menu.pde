@@ -74,14 +74,14 @@ class Menu{
     return distance;
   }
 
-  int get_model_estimate(char t){
+  float get_model_estimate(char t){
     for(Item i: this.items){
       if(i.content == t){
         boolean isInCache = this.inCache(t); 
         // If this item is not in the cache, this will be the height of the cache
         float distanceFromTopOfCache = this.getDistanceFromTopOfCache(t);
         float distanceFromTopOfMenu = this.getDistanceFromTopOfMenu(t);
-        int estimate = this.model.get_estimate(isInCache, i.get_expertise(), this.cacheSize, distanceFromTopOfCache, numItems, distanceFromTopOfMenu, i.item_height);   
+        float estimate = this.model.get_estimate(isInCache, i.get_expertise(), this.cacheSize, distanceFromTopOfCache, numItems, distanceFromTopOfMenu, i.item_height);   
         if(!isInCache){
           i.add_expertise();
         }
@@ -97,7 +97,7 @@ class Menu{
       if(i.content == t){
         i.scale_up(x);
       }else{
-        i.scale_down((x/float(this.items.size())-1.0));
+        i.scale_down((x/(float(this.items.size()))-1.0));
       }
     }
   }

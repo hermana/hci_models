@@ -25,12 +25,12 @@ class Item {
   }
   
   void scale_up(float x){
-    float upscaled_size = this.item_height+(this.item_height*x);
+    float upscaled_size = this.item_height+x;
     this.item_height = upscaled_size > MAX_ITEM_HEIGHT ? MAX_ITEM_HEIGHT : upscaled_size;
   }
   
   void scale_down(float x){
-    float downscaled_size = this.item_height - (this.item_height*x);
+    float downscaled_size = this.item_height - x;
     this.item_height = downscaled_size < MIN_ITEM_HEIGHT ? MIN_ITEM_HEIGHT : downscaled_size;
   }
   

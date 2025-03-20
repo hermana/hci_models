@@ -89,7 +89,7 @@ class Condition {
       float target_height = this.menu.get_item_height(t.target);
       float expertise = this.menu.get_item_expertise(t.target);
       print_results(results, t, target_height, expertise);
-      this.menu.scale_menu(t.target, this.growthFactor);
+      this.menu.scale_menu(t.target, this.growthFactor); //FIXME: should be before
     }
   }
   

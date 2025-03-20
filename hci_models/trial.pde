@@ -1,6 +1,6 @@
 class Trial {
 
-  int predictedTime; //in seconds
+  float predictedTime; //in seconds
   char target;
   
   Trial(char t){
@@ -8,7 +8,7 @@ class Trial {
     this.target = t;
   }
   
-  void setPredictedTime(int time){
+  void setPredictedTime(float time){
     this.predictedTime = time;
   }
 }

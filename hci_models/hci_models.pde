@@ -21,7 +21,6 @@ String RESULTS_FILENAME = "./results.csv";
 
 void setup() {
   
-  // FIXME: fractional amounts for height + it's not actually 250 trials, see instructions
   conditions.add(new Condition("Condition One", 50, 10, 3, 0.5, Distribution.A));
   //conditions.add(new Condition("Condition Two", 5, 5, 2, 0.1, Distribution.B));
   //conditions.add(new Condition("Condition Three", 5, 5, 2, 0.1, Distribution.C));
