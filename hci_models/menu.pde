@@ -101,5 +101,23 @@ class Menu{
       }
     }
   }
+  
+  float get_item_height(char t){
+    for(Item i: this.items){
+      if(i.content == t){
+        return i.item_height;
+      }
+    }
+    return -1.0;
+  }
+  
+  float get_item_expertise(char t){
+    for(Item i: this.items){
+      if(i.content == t){
+        return i.expertise;
+      }
+    }
+    return -1.0;
+  }
 
 }

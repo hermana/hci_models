@@ -82,12 +82,25 @@ class Condition {
     }
   }
   
-  void doTrials(){
+  void doTrials(Table results){
     for(Trial t: this.trials){
       // use the model to get the estimated time for each trial
       t.predictedTime = this.menu.get_model_estimate(t.target); //the estimate in seconds
+      float target_height = this.menu.get_item_height(t.target);
+      float expertise = this.menu.get_item_expertise(t.target);
+      print_results(results, t, target_height, expertise);
       this.menu.scale_menu(t.target, this.growthFactor);
     }
+  }
+  
+  void print_results(Table results, Trial t, float target_height, float expertise){
+        TableRow newRow = results.addRow();
+        newRow.setString("Condition Name", this.name);
+        newRow.setString("Target Distribution", this.distribution.name());
+        newRow.setString("Trial target", str(t.target));
+        newRow.setString("Target size", str(target_height));
+        newRow.setString("Item expertise", str(expertise));
+        newRow.setString("Predicted Time", str(t.predictedTime));
   }
   
 }
