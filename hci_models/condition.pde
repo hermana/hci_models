@@ -4,14 +4,16 @@ class Condition {
     int numTrials;
     int menuSize;
     int menuCacheSize;
+    float growthFactor;
     Menu menu;
     ArrayList<Trial> trials;
   
-    Condition(String condition_name, int num_trials, int menu_size, int menu_cache_size){
+    Condition(String condition_name, int num_trials, int menu_size, int menu_cache_size, float growth_factor){
     this.name = condition_name;
     this.numTrials = num_trials;
     this.menuSize = menu_size;
     this.menuCacheSize = menu_cache_size;
+    this.growthFactor = growth_factor;
     this.menu = new Menu(this.menuSize, this.menuCacheSize);
     this.generateTrials();
   }
@@ -29,9 +31,7 @@ class Condition {
     for(Trial t: this.trials){
       // use the model to get the estimated time for each trial
       t.predictedTime = this.menu.get_model_estimate(t.target); //the estimate in seconds
-      println("the predicted time: ");
-      println(t.predictedTime);
-      println("\n");
+      this.menu.scale_menu(t.target, this.growthFactor);
     }
   }
   

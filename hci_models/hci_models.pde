@@ -4,6 +4,13 @@ enum State{
   END_CONDITION
 }
 
+//TODO
+// Heights of items should scale
+// 250 trials as specified in the instructions
+// Distributions A, B, and C
+// should predicted times be floats?
+// save the results to CSV file. 
+
 ArrayList<Condition> conditions = new ArrayList<Condition>();
 Condition currentCondition;
 int conditionIndex;
@@ -12,8 +19,8 @@ State state;
 void setup() {
   
   // FIXME: fractional amounts for height + it's not actually 250 trials, see instructions
-  conditions.add(new Condition("Condition One", 5, 10, 3));
-  conditions.add(new Condition("Condition Two", 5, 5, 2));
+  conditions.add(new Condition("Condition One", 5, 10, 3, 0.5));
+  conditions.add(new Condition("Condition Two", 5, 5, 2, 0.1));
   
   conditionIndex = 0;
   currentCondition = conditions.get(conditionIndex);

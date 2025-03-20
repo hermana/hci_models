@@ -89,7 +89,17 @@ class Menu{
         return estimate;        
       }
     }
-      return -1; //Item not found
+      return -1; //Item not found - shouldn't happen
+  }
+  
+  void scale_menu(char t, float x){
+    for(Item i: this.items){
+      if(i.content == t){
+        i.scale_up(x);
+      }else{
+        i.scale_down((x/float(this.items.size())-1.0));
+      }
+    }
   }
 
 }
